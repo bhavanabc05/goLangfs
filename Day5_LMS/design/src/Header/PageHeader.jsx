@@ -34,7 +34,7 @@ function PageHeader() {
 
                         {/* Add Book */}
                         <li className="nav-item">
-                            <Link className="nav-link text-light fw-semibold" to="/book/add">
+                            <Link className="nav-link text-light fw-semibold" to="/book/create">
                                 ➕ Add Book
                             </Link>
                         </li>

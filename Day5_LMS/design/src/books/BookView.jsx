@@ -16,27 +16,42 @@ export default function BookView({ books }) {
             <h3>
                 <button onClick={() => navigate(-1)} className="btn btn-light">Go Back</button> View Book
             </h3>
-            <div className="container">
-                {book ? (
-                    <>
-                        <div className="form-group mb-3">
-                            <label className="form-label">Book Title:</label>
-                            <div className="form-control">{book.title}</div>
-                        </div>
-                        <div className="form-group mb-3">
-                            <label className="form-label">Author:</label>
-                            <div className="form-control">{book.author}</div>
-                        </div>
-                        <div className="form-group mb-3">
-                            <label className="form-label">Genre:</label>
-                            <div className="form-control">{book.genre}</div>
-                        </div>
-                        <button className="btn btn-warning" onClick={() => navigate(`/book/edit?id=${book.id}`)}>Edit</button>
-                    </>
-                ) : (
-                    <h5 className="text-danger">Book not found</h5>
-                )}
+            <div className="container mt-5">
+    {book ? (
+        <div className="card shadow-lg border-0 rounded p-4" style={{ maxWidth: "600px", margin: "auto" }}>
+            <div className="card-body">
+                <h3 className="text-center text-primary fw-bold mb-4">📖 Book Details</h3>
+                
+                <div className="mb-3">
+                    <label className="form-label fw-bold text-secondary">📚 Title:</label>
+                    <div className="form-control border-0 bg-light">{book.title}</div>
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label fw-bold text-secondary">✍️ Author:</label>
+                    <div className="form-control border-0 bg-light">{book.author}</div>
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label fw-bold text-secondary">🎭 Genre:</label>
+                    <div className="form-control border-0 bg-light">{book.genre}</div>
+                </div>
+
+                <div className="text-center">
+                    <button 
+                        className="btn btn-warning px-4 py-2 shadow-sm fw-bold"
+                        onClick={() => navigate(`/book/edit?id=${book.id}`)}
+                    >
+                        ✏️ Edit Book
+                    </button>
+                </div>
             </div>
+        </div>
+    ) : (
+        <h5 className="text-danger text-center fw-bold mt-4">🚫 Book not found</h5>
+    )}
+</div>
+
             <PageFooter />
         </>
     );
