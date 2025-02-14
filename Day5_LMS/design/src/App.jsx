@@ -1,6 +1,6 @@
 import BookView from "./books/BookView"
 import BookList from "./books/BookList"
-import BookAdd from "./books/BookAdd"
+import BookCreate from "./books/BookCreate"
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 
 function App() {
@@ -10,10 +10,10 @@ function App() {
         <Routes>
             <Route path="/" element={<BookList/>}/>
             <Route path="/book/list" element={<BookList/>}/>
-            <Route path="/book/Add" element={<BookAdd/>}/>
+            <Route path="/book/create" element={<BookCreate/>}/>
             <Route path="/book/view" element={<BookView/>}/>
             <Route path="book/book/view" element={<BookView/>}/>
-            <Route path="book/book/Add" element={<BookAdd/>}/>
+            <Route path="book/book/create" element={<BookCreate/>}/>
         </Routes>
       
       </BrowserRouter>

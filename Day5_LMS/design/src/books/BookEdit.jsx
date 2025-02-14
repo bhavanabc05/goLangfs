@@ -1,48 +1,10 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 
-import axios from 'axios';
+
 import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
 function BookEdit() {
-    const [book, setBook] = useState({title:'', genre:'', author:'', year:''});
-    const params= useParams();
-    const navigate = useNavigate();
     
-    const txtBoxOnChange = event => {
-        const updatableBook = {...book};
-        updatableBook[event.target.id] = event.target.value;
-        setBook(updatableBook);
-    };
-
-    const readById = async () => {
-        const baseUrl = "http://localhost:8080";
-        try {
-            const response = await axios.get(`${baseUrl}/books/${params.id}`);
-            const queriedBook = response.data;
-            setBook(queriedBook);
-        } catch(error) {
-            alert('Server Error');
-        }
-    };
-
-    const updateBook = async () => {
-        const baseUrl = "http://localhost:8080";
-        try {
-            const response = await axios.put(`${baseUrl}/books/${params.id}`, {...book});
-            const updatedBook = response.data.book;
-            setBook(updatedBook);
-            alert(response.data.message);
-            navigate('/books/list');
-        } catch(error) {
-            alert('Server Error');
-        }
-    };
-
-    useEffect(() => {
-        readById();
-    },[]);
     
     return(
         <>
@@ -80,7 +42,7 @@ function BookEdit() {
                 </div>
                 <button className="btn btn-warning" onClick={updateBook}>Update Book</button>
             </div>
-            <PageFooter/>
+           <PageFooter/>
         </>
     );
 }

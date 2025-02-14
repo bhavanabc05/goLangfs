@@ -1,32 +1,8 @@
-import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
 function BookCreate() {
-    // const [book, setBook] = useState({title:'', genre:'', author:'', year:''});
-    // const navigate = useNavigate();
-
-    // const txtBoxOnChange = event => {
-    //     const updatableBook = {...book};
-    //     updatableBook[event.target.id] = event.target.value;
-    //     setBook(updatableBook);
-    // };
-
-    // const createBook = async () => {
-    //     const baseUrl = "http://localhost:8080";
-    //     try {
-    //         const response = await axios.post(`${baseUrl}/books`, {...book});
-    //         const createdBook = response.data.book;
-    //         setBook(createdBook);
-    //         alert(response.data.message);
-    //         navigate('/books/list');
-    //     } catch(error) {
-    //         alert('Server Error');
-    //     }
-    // };
     
     return(
         <>

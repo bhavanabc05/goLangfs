@@ -1,40 +1,8 @@
-import { useEffect, useState } from "react";
 
-import axios from 'axios';
 import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
 function BookList() {
-    // const [books, setBooks] = useState([{id:'', title:'', genre:'', author:'', year:''}]);
-    
-    // const readAllBooks = async () => {
-    //     try {
-    //         const baseUrl = 'http://localhost:8080';
-    //         const response = await axios.get(`${baseUrl}/books`);
-    //         const queriedBooks = response.data;
-    //         setBooks(queriedBooks);
-    //     } catch(error) {
-    //         alert('Server Error');
-    //     }
-    // };
-    
-    // const deleteBook = async (id) => {
-    //     if(!confirm("Are you sure to delete?")) {
-    //         return;
-    //     }
-    //     const baseUrl = "http://localhost:8080";
-    //     try {
-    //         const response = await axios.delete(`${baseUrl}/books/${id}`);
-    //         alert(response.data.message);
-    //         await readAllBooks();
-    //     } catch(error) {
-    //         alert('Server Error');
-    //     }
-    // };
-    
-    // useEffect(()=>{
-    //     readAllBooks();
-    // },[]);
     
     return (
         <>
