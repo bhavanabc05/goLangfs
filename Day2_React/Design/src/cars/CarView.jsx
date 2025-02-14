@@ -1,3 +1,4 @@
+import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
 
@@ -5,6 +6,7 @@ function CarView() {
     return (
         <>
             <PageHeader/>
+          
 
             <h3><a href="/" className="btn btn-light">Go Back</a>View Car</h3>
             <div className="container">
@@ -21,6 +23,7 @@ function CarView() {
                     <div className="form-control" id="type">???</div>
                 </div>
             </div>
+            <PageFooter/>
         </>
     );
 }

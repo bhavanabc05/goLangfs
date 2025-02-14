@@ -1,3 +1,4 @@
+import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
 
@@ -5,6 +6,7 @@ export default function CarList() {
     return (
         <>
             <PageHeader/>
+          
             <h3>Car List</h3>
             <div className="container">
                 <table className="table table-success table-striped">
@@ -35,6 +37,7 @@ export default function CarList() {
                     </tbody>
                 </table>
             </div>
+            <PageFooter/>
 
         </>
     );

@@ -1,3 +1,4 @@
+import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
 
@@ -5,6 +6,7 @@ export default function CarCreate() {
     return (
         <>
            <PageHeader/>
+          
             <h3> <a href="/" className="btn btn-light">Go Back</a>Add Car</h3>
             <div className="container">
 
@@ -22,6 +24,7 @@ export default function CarCreate() {
                 </div>
                 <button className="btn btn-primary">Create Car</button>
             </div>
+            <PageFooter/>
 
         </>
     );
