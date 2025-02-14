@@ -1,33 +1,45 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
-export default function BookEdit({ books, setBooks }) {
+export default function BookEdit() {
     const location = useLocation();
     const navigate = useNavigate();
     const queryParams = new URLSearchParams(location.search);
     const bookId = queryParams.get("id");
 
-    const [book, setBook] = useState(null);
+    const [book, setBook] = useState({ title: "", author: "", genre: "" });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    // Load book data when component mounts
+    // Fetch book details when component mounts
     useEffect(() => {
-        const foundBook = books.find((b) => b.id.toString() === bookId);
-        if (foundBook) {
-            setBook(foundBook);
-        }
-    }, [bookId, books]);
+        axios.get(`http://localhost:8080/books/${bookId}`)
+            .then(response => {
+                setBook(response.data);
+                setLoading(false);
+            })
+            .catch(() => {
+                setError("🚫 Book not found");
+                setLoading(false);
+            });
+    }, [bookId]);
 
     const handleChange = (e) => {
         setBook({ ...book, [e.target.name]: e.target.value });
     };
 
-    const handleSave = () => {
-        const updatedBooks = books.map((b) => (b.id === book.id ? book : b));
-        setBooks(updatedBooks);
-        localStorage.setItem("books", JSON.stringify(updatedBooks));
-        navigate("/book/list"); // Redirect to book list
+    const handleSave = async () => {
+        try {
+            await axios.put(`http://localhost:8080/books/${bookId}`, book);
+            alert("✅ Book updated successfully!");
+            navigate("/book/list"); // Redirect to book list
+        } catch (error) {
+            console.error("Error updating book:", error);
+            alert("❌ Failed to update book.");
+        }
     };
 
     return (

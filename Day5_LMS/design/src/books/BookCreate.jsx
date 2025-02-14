@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
@@ -9,23 +10,22 @@ export default function BookCreate({ onAddBook }) {
   const [genre, setGenre] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (!title || !author || !genre) {
       alert("Please fill all fields!");
       return;
     }
 
-    const newBook = {
-      id: Date.now(), // Unique ID for the book
-      title,
-      author,
-      genre,
+    try {
+        await axios.post("http://localhost:8080/books", { title, author, genre });
+        alert("✅ Book added successfully!");
+        navigate("/book/list"); // Redirect to book list
+      } catch (error) {
+        console.error("Error adding book:", error);
+        alert("❌ Failed to add book.");
+      }
     };
-
-    onAddBook(newBook); // Call the function passed from App.js
-    navigate("/book/list"); // Redirect to book list after adding
-  };
 
   return (
     <>
