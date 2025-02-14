@@ -1,50 +1,45 @@
-
+import { Link } from "react-router-dom";
 import PageFooter from "../Footer/PageFooter";
 import PageHeader from "../Header/PageHeader";
 
-function BookList() {
-    
+export default function BookList({ books }) {
     return (
         <>
-            <PageHeader/>
-            <h3>List of Books</h3>
+            <PageHeader />
+            <h3>Book List</h3>
             <div className="container">
-                <table className="table table-success table-bordered">
-                    <thead className="table-dark">
+                <Link to="/book/create" className="btn btn-primary mb-3">Add Book</Link>
+                <table className="table table-success table-striped">
+                    <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Genre</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Year</th>
-                            <th></th>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Genre</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody> 
-                        {(books && books.length > 0) ? books.map(
-                            (book) =>  {return (<tr key={book.id}>
-                            <th scope="row">{book.id}</th>
-                            <td>{book.title}</td>
-                            <td>{book.genre}</td>
-                            <td>{book.author}</td>
-                            <td>{book.year}</td>
-                            <td><a href={`/books/view/${book.id}`} 
-                                className="btn btn-success">View</a>
-                                &nbsp;
-                                <a href={`/books/edit/${book.id}`} 
-                                className="btn btn-warning">Edit</a>
-                                &nbsp;
-                                <button  
-                                className="btn btn-danger"
-                                onClick={()=>deleteBook(book.id)}>Delete</button></td>
-                        </tr>);}
-                        ) : <tr><td colSpan="6">No Data Found</td></tr>}
+                    <tbody>
+                        {books.length > 0 ? (
+                            books.map((book) => (
+                                <tr key={book.id}>
+                                    <td>{book.id}</td>
+                                    <td>{book.title}</td>
+                                    <td>{book.author}</td>
+                                    <td>{book.genre}</td>
+                                    <td>
+                                        <Link className="btn btn-success me-2" to={`/book/view?id=${book.id}`}>View</Link>
+                                        <Link className="btn btn-warning" to={`/book/edit?id=${book.id}`}>Edit</Link>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr><td colSpan="5" className="text-center">No books available</td></tr>
+                        )}
                     </tbody>
                 </table>
             </div>
-            <PageFooter/>
+            <PageFooter />
         </>
     );
 }
-
-export default BookList;
